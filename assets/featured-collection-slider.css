@@ -1,0 +1,126 @@
+.featured-collection-slider {
+}
+
+.featured-collection-slider__container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 100px auto;
+  padding: 40px;
+}
+
+.featured-collection-slider__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 20px;
+  margin-bottom: 50px;
+}
+
+.featured-collection-slider__header h2 {
+  font-size: 48px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.featured-collection-slider__header a {
+  color: #434343;
+}
+
+.featured-collection-slider__carousel {
+}
+
+.featured-collection-slider__carousel .splide__track {
+  padding: 20px;
+}
+
+.featured-collection-slider__card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative; /* for the footer positioning*/
+  padding-bottom: 100px;
+}
+
+.featured-collection-slider__card.is-visible {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.featured-collection-slider__card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.featured-collection-slider__title {
+  font-size: 31.88px;
+  line-height: 1;
+  margin: 10px 0 10px;
+}
+
+.featured-collection-slider__desc {
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 300;
+}
+
+.card__footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+}
+
+.featured-collection-slider__card button {
+  background: #8ff695;
+  width: 100%;
+  text-align: center;
+  color: #333;
+  border-radius: 0 0 10px 10px;
+  outline: 0;
+  border: 0;
+  font-size: 12px;
+  font-weight: bold;
+  min-height: 39px;
+}
+
+.featured-collection-slider__carousel .splide__pagination {
+  position: relative;
+  margin-top: 50px;
+  padding: 0;
+  bottom: unset;
+}
+
+.featured-collection-slider__carousel .splide__pagination__page {
+  background: #ebebeb;
+  width: 14px;
+  height: 14px;
+}
+
+.featured-collection-slider__carousel .splide__pagination__page.is-active {
+  background: #8ff695;
+  transform: scale(1);
+}
+
+@media screen and (max-width: 768px) {
+  .featured-collection-slider__header {
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 30px;
+  }
+
+  .featured-collection-slider__container {
+    padding: 0;
+  }
+
+  .featured-collection-slider__card {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .featured-collection-slider__carousel .splide__pagination {
+    margin-top: 30px;
+  }
+}

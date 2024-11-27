@@ -1,0 +1,80 @@
+{% # using Splide as slick requires jQuery and flickity doesn't seem to support breakpoints natively %}
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" async></script>
+<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+
+{{ 'featured-collection-slider.css' | asset_url | stylesheet_tag }}
+
+<div class="featured-collection-slider__container">
+  <div class="featured-collection-slider__header">
+    <h2>{{ section.settings.heading }}</h2>
+    {% if section.settings.featured_collection %}
+      <a href="{{ section.settings.featured_collection.url }}">View all</a>
+    {% endif %}
+  </div>
+  <div class="featured-collection-slider__carousel splide">
+    <div class="splide__track">
+      <div class="splide__list">
+        {% for product in section.settings.featured_collection.products %}
+          <div class="featured-collection-slider__card splide__slide">
+            {{ product.featured_image | image_url: width: 300 | image_tag: class: '' }}
+            <div class="" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="cart__header">
+                <h2 class="featured-collection-slider__title">{{ product.title }}</h2>
+                <p class="featured-collection-slider__desc">
+                  {{
+                    product.description
+                    | truncatewords: 15
+                    | default: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+                  }}
+                </p>
+              </div>
+              <div class="card__footer">
+                {% unless product.has_only_default_variant %}
+                  <p class="featured-collection-slider__note" style="font-weight: bold; margin-bottom: 10px;">
+                    {{ product.options_with_values[0].name }}:
+                    {{ product.selected_or_first_available_variant.title }}
+                  </p>
+                {% endunless %}
+                <product-form>
+                  {% form 'product', product, data-type: 'add-to-cart-form' %}
+                    <input name="id" type="hidden" value="{{ product.selected_or_first_available_variant.id }}">
+                    <input name="quantity" type="hidden" value="1">
+                    <button type="submit" name="add">Add to cart</button>
+                  {% endform %}
+                </product-form>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<script src="{{ 'featured-collection-slider.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Featured Product Slider",
+  "tag": "section",
+  "class": "section featured-collection-slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Product Slider"
+    }
+  ]
+}
+{% endschema %}
